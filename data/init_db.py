@@ -9,20 +9,20 @@ DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "employees.db
 EMPLOYEES = [
     # (name, role, department, email, manager_name, phone)
     ("Alice Martin", "Directrice Technique", "Direction", "alice.martin@techcorp.fr", None, "01 40 50 60 01"),
-    ("Bob Durand", "Chef de Projet", "Developpement", "bob.durand@techcorp.fr", "Alice Martin", "01 40 50 60 10"),
-    ("Claire Petit", "Developpeuse Senior", "Developpement", "claire.petit@techcorp.fr", "Bob Durand", "01 40 50 60 11"),
-    ("David Moreau", "Developpeur Senior", "Developpement", "david.moreau@techcorp.fr", "Bob Durand", "01 40 50 60 12"),
-    ("Jean Dupont", "Developpeur Junior", "Developpement", "jean.dupont@techcorp.fr", "Bob Durand", "01 40 50 60 13"),
-    ("Lucas Bernard", "Designer UX", "Developpement", "lucas.bernard@techcorp.fr", "Bob Durand", "01 40 50 60 14"),
+    ("Bob Durand", "Chef de Projet", "Développement", "bob.durand@techcorp.fr", "Alice Martin", "01 40 50 60 10"),
+    ("Claire Petit", "Développeuse Senior", "Développement", "claire.petit@techcorp.fr", "Bob Durand", "01 40 50 60 11"),
+    ("David Moreau", "Développeur Senior", "Développement", "david.moreau@techcorp.fr", "Bob Durand", "01 40 50 60 12"),
+    ("Jean Dupont", "Développeur Junior", "Développement", "jean.dupont@techcorp.fr", "Bob Durand", "01 40 50 60 13"),
+    ("Lucas Bernard", "Designer UX", "Développement", "lucas.bernard@techcorp.fr", "Bob Durand", "01 40 50 60 14"),
     ("Sophie Martin", "Responsable RH", "Ressources Humaines", "sophie.martin@techcorp.fr", "Alice Martin", "01 40 50 60 20"),
     ("Pierre Lefebvre", "Assistant RH", "Ressources Humaines", "pierre.lefebvre@techcorp.fr", "Sophie Martin", "01 40 50 60 21"),
-    ("Marie Durand", "Referente Teletravail", "Ressources Humaines", "marie.durand@techcorp.fr", "Sophie Martin", "01 40 50 60 22"),
+    ("Marie Durand", "Référente Télétravail", "Ressources Humaines", "marie.durand@techcorp.fr", "Sophie Martin", "01 40 50 60 22"),
     ("Emma Leroy", "Data Scientist", "Data", "emma.leroy@techcorp.fr", "Alice Martin", "01 40 50 60 30"),
     ("Thomas Girard", "Responsable IT", "IT", "thomas.girard@techcorp.fr", "Alice Martin", "01 40 50 60 40"),
-    ("Julie Roux", "Administratrice Systeme", "IT", "julie.roux@techcorp.fr", "Thomas Girard", "01 40 50 60 41"),
+    ("Julie Roux", "Administratrice Système", "IT", "julie.roux@techcorp.fr", "Thomas Girard", "01 40 50 60 41"),
     ("Marc Levy", "DPO", "Juridique", "marc.levy@techcorp.fr", "Alice Martin", "01 40 50 60 50"),
     ("Camille Fontaine", "Chef de Produit", "Produit", "camille.fontaine@techcorp.fr", "Alice Martin", "01 40 50 60 60"),
-    ("Nicolas Perrin", "QA Engineer", "Qualite", "nicolas.perrin@techcorp.fr", "Bob Durand", "01 40 50 60 15"),
+    ("Nicolas Perrin", "QA Engineer", "Qualité", "nicolas.perrin@techcorp.fr", "Bob Durand", "01 40 50 60 15"),
 ]
 
 

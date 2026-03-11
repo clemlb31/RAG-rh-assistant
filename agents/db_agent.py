@@ -6,6 +6,7 @@ behind a single tool for the main agent.
 import os
 import sys
 import sqlite3
+import unicodedata
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -16,9 +17,16 @@ from config import DB_PATH, MISTRAL_MODEL, MISTRAL_TEMPERATURE
 from agents.utils import run_subagent
 
 
+def _strip_accents(text: str) -> str:
+    """Remove accents from a string for accent-insensitive comparison."""
+    nfkd = unicodedata.normalize("NFKD", text)
+    return "".join(c for c in nfkd if not unicodedata.combining(c))
+
+
 def _query_db(sql: str, params: tuple = ()) -> list[dict]:
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
+    conn.create_function("strip_accents", 1, _strip_accents)
     cursor = conn.cursor()
     cursor.execute(sql, params)
     results = [dict(row) for row in cursor.fetchall()]
@@ -46,7 +54,7 @@ def get_employee(name: str) -> str:
         name: Le nom (ou partie du nom) de l'employe a rechercher.
     """
     results = _query_db(
-        "SELECT name, role, department, email, manager_name, phone FROM employees WHERE name LIKE ?",
+        "SELECT name, role, department, email, manager_name, phone FROM employees WHERE strip_accents(name) LIKE strip_accents(?)",
         (f"%{name}%",),
     )
     if not results:
@@ -62,7 +70,7 @@ def get_manager(employee_name: str) -> str:
         employee_name: Le nom de l'employe dont on cherche le manager.
     """
     results = _query_db(
-        "SELECT manager_name FROM employees WHERE name LIKE ?",
+        "SELECT manager_name FROM employees WHERE strip_accents(name) LIKE strip_accents(?)",
         (f"%{employee_name}%",),
     )
     if not results:
@@ -97,7 +105,10 @@ def search_employees(query: str) -> str:
     """
     results = _query_db(
         "SELECT name, role, department, email, phone FROM employees "
-        "WHERE name LIKE ? OR role LIKE ? OR department LIKE ? OR email LIKE ?",
+        "WHERE strip_accents(name) LIKE strip_accents(?) "
+        "OR strip_accents(role) LIKE strip_accents(?) "
+        "OR strip_accents(department) LIKE strip_accents(?) "
+        "OR strip_accents(email) LIKE strip_accents(?)",
         (f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%"),
     )
     if not results:
